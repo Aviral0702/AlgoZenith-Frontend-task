@@ -193,7 +193,7 @@ function ChapterContent({ chapterIndex }) {
       {/* Header section */}
       <div className="flex justify-between items-start mb-4">
         <div className="space-y-1">
-          <p className="text-gray-600 text-sm">PART {chapterIndex + 1}</p>
+          <p className="text-gray-600 text-sm">PART 1</p>
           <h2 className="font-semibold text-custom-blue">
             {selectedChapter.title}
           </h2>
