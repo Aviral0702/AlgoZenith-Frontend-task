@@ -186,40 +186,35 @@ function ChapterContent({ chapterIndex }) {
   const selectedChapter = chapterData[chapterIndex] || {};
   return (
     <div
-      className={`w-3/4 p-4 bg-white shadow-md rounded-lg transition-all duration-300 ${
+      className={`p-4 bg-white shadow-md rounded-lg transition-all duration-300 ${
         isCollapsed ? "h-32" : "h-auto"
-      }`}
+      } w-full md:w-3/4 mx-auto`}
     >
-      {/* Header section */}
-      <div className="flex justify-between items-start mb-4">
-        <div className="space-y-1">
-          <p className="text-gray-600 text-sm">PART 1</p>
-          <h2 className="font-semibold text-custom-blue">
+      <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-4">
+        <div className="space-y-1 md:mr-4">
+          <p className="text-gray-600 text-xs md:text-sm">PART 1</p>
+          <h2 className="font-semibold text-custom-blue text-sm md:text-base">
             {selectedChapter.title}
           </h2>
         </div>
 
-        <div className="flex items-center space-x-4">
-          <div className="flex items-center text-gray-600 gap-1">
-            <img src="/Vectors/ClockOutline.png" alt="" height={5} width={20} />
-            <span className="text-sm">02:00:00</span>
+        <div className="flex flex-wrap items-center gap-2 mt-2 md:mt-0">
+          <div className="flex items-center text-gray-600 gap-1 text-xs md:text-sm">
+            <img src="/Vectors/ClockOutline.png" alt="" className="h-4 w-4" />
+            <span>02:00:00</span>
           </div>
-
-          <div className="flex items-center text-gray-600 gap-1">
-            <img src="/Vectors/Contest.png" alt="" height={3} width={15} />
-            <span className="text-sm">Medium</span>
+          <div className="flex items-center text-gray-600 gap-1 text-xs md:text-sm">
+            <img src="/Vectors/Contest.png" alt="" className="h-4 w-4" />
+            <span>Medium</span>
           </div>
-
-          <div className="flex items-center text-gray-600">
+          <div className="flex items-center text-gray-600 gap-1 text-xs md:text-sm">
             <img
               src="/Vectors/DocumentDuplicateOutline.png"
               alt=""
-              height={5}
-              width={20}
+              className="h-4 w-4"
             />
-            <span className="text-sm">5</span>
+            <span>5</span>
           </div>
-
           <button className="text-gray-600" onClick={toggleCollapse}>
             {isCollapsed ? (
               <ChevronDown className="w-4 h-4" />
@@ -230,10 +225,11 @@ function ChapterContent({ chapterIndex }) {
         </div>
       </div>
 
-      {/* Progress bar */}
       <div className="mb-4">
         <div className="flex justify-end mb-1">
-          <span className="text-sm text-gray-600">45% Completed</span>
+          <span className="text-xs md:text-sm text-gray-600">
+            45% Completed
+          </span>
         </div>
         <div className="w-full bg-gray-200 rounded-full h-1">
           <div
@@ -242,26 +238,28 @@ function ChapterContent({ chapterIndex }) {
           />
         </div>
       </div>
-      {/* collapsible component */}
+
+      {/* Collapsible content */}
       {!isCollapsed && (
         <div className="space-y-2">
           {selectedChapter.parts?.map((part, index) => (
-            <div>
-              <div
-                key={index}
-                className="flex justify-between items-center p-2 hover:bg-gray-100 rounded-md"
-              >
-                <span className="flex items-center space-x-2">
-                  <span className="material-icons">
-                    <img src={part.icon} alt="" height={5} width={20} />
-                  </span>
+            <div key={index} className="space-y-1">
+              <div className="flex flex-col md:flex-row justify-between items-start md:items-center p-2 hover:bg-gray-100 rounded-md">
+                <span className="flex items-center gap-2 text-sm md:text-base">
+                  <img
+                    src={part.icon}
+                    alt=""
+                    className="h-4 w-4 md:h-5 md:w-5"
+                  />
                   <span>{part.title}</span>
                 </span>
-                <span className="text-gray-500">{part.time}</span>
+                <span className="text-gray-500 text-xs md:text-sm mt-1 md:mt-0">
+                  {part.time}
+                </span>
               </div>
-              <div className="flex flex-row">
-                <div className="h-1 w-1/2 bg-gradient-to-r from-white to-gray-200" />
-                <div className="h-1 w-1/2 bg-gradient-to-r from-gray-200 to-white" />
+              <div className="flex h-1">
+                <div className="w-1/2 bg-gradient-to-r from-white to-gray-200" />
+                <div className="w-1/2 bg-gradient-to-r from-gray-200 to-white" />
               </div>
             </div>
           ))}
